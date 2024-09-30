@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: CLOUD-API-Gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+      routes:
+        - id: greet-api
+          uri: lb://GEET-API
+          predicates:
+            - Path=/greet/**
+        - id: welcome-api
+          uri: lb://WELCOME-API
+          predicates:
+            - Path=/welcome/**
+
+server:
+  port: 2222
